@@ -363,6 +363,7 @@
     <protected-broadcast android:name="android.net.wifi.p2p.THIS_DEVICE_CHANGED"/>
     <protected-broadcast android:name="android.net.wifi.p2p.PEERS_CHANGED"/>
     <protected-broadcast android:name="android.net.wifi.p2p.CONNECTION_STATE_CHANGE"/>
+    <protected-broadcast android:name="android.net.wifi.p2p.SLAVE_SLAVE_CONNECTION_STATE_CHANG"/>
     <protected-broadcast android:name="android.net.wifi.p2p.action.WIFI_P2P_PERSISTENT_GROUPS_CHANGED"/>
     <protected-broadcast android:name="com.qualcomm.qti.net.wifi.DPP_EVENT"/>
     <protected-broadcast android:name="com.qualcomm.qti.net.wifi.PARTIAL_SCAN_RESULTS"/>
@@ -1711,6 +1712,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.VOICE"/>
             </intent-filter>
+            <meta-data android:name="miui.supportFlipFullScreen" android:value="1"/>
         </activity>
         <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|smallestScreenSize" android:documentLaunchMode="never" android:excludeFromRecents="true" android:exported="true" android:finishOnCloseSystemDialogs="true" android:name="com.android.internal.app.MiuiResolverActivity" android:process=":ui" android:relinquishTaskIdentity="true" android:theme="@style/Theme.DeviceDefault.Chooser" android:visibleToInstantApps="true">
             <intent-filter>
@@ -1735,7 +1737,7 @@
         <activity-alias android:exported="true" android:label="@string/user_owner_label" android:name="com.android.internal.app.ForwardIntentToParent" android:targetActivity="com.android.internal.app.IntentForwarderActivity"/>
         <activity-alias android:exported="true" android:icon="@drawable/ic_corp_badge" android:label="@string/managed_profile_label" android:name="com.android.internal.app.ForwardIntentToManagedProfile" android:targetActivity="com.android.internal.app.IntentForwarderActivity"/>
         <activity android:excludeFromRecents="true" android:finishOnCloseSystemDialogs="true" android:label="@string/heavy_weight_switcher_title" android:name="com.android.internal.app.HeavyWeightSwitcherActivity" android:process=":ui" android:theme="@style/Theme.DeviceDefault.System.Dialog.Alert"/>
-        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize" android:icon="@drawable/platlogo" android:name="com.android.internal.app.PlatLogoActivity" android:process=":ui" android:theme="@style/Theme.Wallpaper.NoTitleBar.Fullscreen"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize" android:enableOnBackInvokedCallback="true" android:icon="@drawable/platlogo" android:name="com.android.internal.app.PlatLogoActivity" android:process=":ui" android:theme="@style/Theme.NoTitleBar.Fullscreen"/>
         <activity android:excludeFromRecents="true" android:name="com.android.internal.app.DisableCarModeActivity" android:process=":ui" android:theme="@style/Theme.NoDisplay"/>
         <activity android:excludeFromRecents="true" android:exported="true" android:label="@string/choose_account_label" android:name="android.accounts.ChooseAccountActivity" android:process=":ui" android:theme="@style/Theme.DeviceDefault.Light.Dialog" android:visibleToInstantApps="true"/>
         <activity android:excludeFromRecents="true" android:exported="true" android:label="@string/choose_account_label" android:name="android.accounts.ChooseTypeAndAccountActivity" android:process=":ui" android:theme="@style/Theme.DeviceDefault.Light.Dialog" android:visibleToInstantApps="true"/>
@@ -1878,6 +1880,7 @@
         <service android:name="com.android.server.wm.MiuiSizeCompatJob" android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:exported="false" android:name="com.android.server.wm.RestartAppService"/>
         <service android:name="com.android.server.display.aiautobrt.UserBrightnessStatsJob" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.android.server.am.ProcessProphetJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name="com.android.server.pm.DynamicCodeLoggingService" android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name="com.android.server.compos.IsolatedCompilationJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name="com.android.server.PruneInstantAppsJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
@@ -1926,6 +1929,7 @@
         </service>
         <provider android:authorities="com.android.textclassifier.icons" android:enabled="true" android:exported="true" android:name="com.android.server.textclassifier.IconsContentProvider" android:singleUser="true"/>
         <meta-data android:name="com.android.server.patch.25239169" android:value="true"/>
-        <service android:exported="true" android:name="com.android.server.MemoryControlServiceImpl" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.android.server.am.MemoryControlJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.android.server.pm.BackgroundPreinstalloptService" android:permission="android.permission.BIND_JOB_SERVICE"/>
     </application>
 </manifest>
